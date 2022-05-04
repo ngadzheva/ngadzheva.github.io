@@ -1,0 +1,303 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Сесии</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/white.css" id="theme">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h3>Сесии</h3>
+				</section>
+
+				<section>
+					<figure>
+						<img src="pict--sales-flowchart-hunting-and-fishing-license-sales-flowchart.png"/>
+					</figure>
+				</section>
+
+				<section>
+					<h3>HTTP протокол</h3>
+					<ul>
+						<li class="fragment fade-in">Stateless протокол.</li>
+						<li class="fragment fade-in">Заявките са независими помежду си.</li>
+						<li class="fragment fade-in">Не могат да се проследяват свързани заявки.</li>
+						<li class="fragment fade-in">Как се идентифицират потребителите?</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Сесия</h3>
+					<section>
+						<ul>
+							<li class="fragment fade-in">Поредица от непрекъснати действия на потребител на дадено уеб приложение в рамките на определен период от време.</li>
+							<li class="fragment fade-in">Данните се съхраняват под формата на наредени двойки ключ - стойност.</li>
+						</ul>
+					</section>
+					<section>
+						<figure>
+							<img src="List of Sessions 2.png"/>
+						</figure>
+					</section>
+				</section>
+
+				<section>
+					<h3>Къде се съхраняват сесиите?</h3>
+					<ul>
+						<li class="fragment fade-in">в паметта на backend приложението</li>
+						<li class="fragment fade-in">в база данни</li>
+						<li class="fragment fade-in">в кеш паметта на backend приложението</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Съхраняване на сесия в кеша</h3>
+					<section>
+						<figure>
+							<img src="1_DdKCmZ4CTdYzGKtk6YpWzQ.png"/>
+						</figure>
+					</section>
+					
+					<section>
+						<h4>Предимства</h4>
+						<ul>
+							<li class="fragment fade-in">бързо извличане на данни</li>
+							<li class="fragment fade-in">по-малко зависимости</li>
+							<li class="fragment fade-in">може да се използва за няколко приложения</li>
+							<li class="fragment fade-in">управлява се автоматично</li>
+						</ul>
+					</section>
+					<section>
+						<h4>Недостатъци</h4>
+						<ul>
+							<li class="fragment fade-in">допълнителен ресурс</li>
+							<li class="fragment fade-in">не е подходящо за малки приложения</li>
+							<li class="fragment fade-in">нулиране на кеша => унищожаване на всички сесии</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<h3>Сесии в контекста на Express</h3>
+
+					<section>
+						<figure>
+							<img src="1_D4RORzEcl9Snzhr6JXeB4A.png"/>
+						</figure>
+					</section>
+
+					<section>
+						<h4>Как да създадем сесия с Express?</h4>
+						<pre class="highlight js">
+							<code data-line-numbers="4|5|6|9|10|12|13-15|16|17-20">
+import * as express from 'express';
+import * as uuid from 'uuid/v4';
+import * as session from 'express-session';
+import * as Memcached from 'memcached';
+import * as memcached from 'connect-memcached';
+
+const app = express();
+const memcachedServer = new Memcached(`${MEMCACHED_HOST}:${MEMCACHED_PORT}`);
+const MemcachedStore = memcached(session);
+
+app.use(session({
+	genid: (req) => {
+		return uuid.v4().toString();
+	},
+	secret: SESSION_SECRET_KEY,
+	store   : new MemcachedStore({
+		hosts: [`${MEMCACHED_HOST}:${MEMCACHED_PORT}`], 
+		secret: MEMCACHED_SECRET_KEY
+	})
+}));							
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<h4>Как да съхраняваме данни в сесия с Express?</h4>
+						<pre class="highlight js">
+							<code data-line-numbers="3,4">
+app.get('/', function(req, res, next) {
+	let sessData = req.session;
+	sessData.someAttribute = "foo";
+	res.send('Returning with some text');
+});															   
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<h4>Как да извличаме данни от сесия с Express?</h4>
+						<pre class="highlight js">
+							<code data-line-numbers="3">
+app.get('/bar', function(req, res, next) {
+	let someAttribute = req.session.someAttribute;
+	res.send(`This will print the attribute I set earlier: ${someAttribute}`);
+});																							  
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<h4>Как да нулираме сесия с Express?</h4>
+						<pre class="highlight js">
+							<code data-line-numbers="3">
+app.get('/logout', function(req, res, next) {
+	req.session.destroy((error) => {
+		if (error) {
+			console.error(error);
+		}
+	});
+});																							  
+							</code>
+						</pre>
+					</section>
+				</section>
+
+				<section>
+					<h3>Бисквитки</h3>
+					<section>
+						<p class="fragment fade-in">Mалка част от данни, която се съхранява в браузъра на потребителя. </p>
+						<p class="fragment fade-in">Наредена двойка име - стойност.</p>
+						<p class="fragment fade-in">Имат определен живот.</p>
+					</section>
+					<section>
+						<figure>
+							<img src="cookies.png"/>
+						</figure>
+					</section>
+					<section>
+						<figure>
+							<img src="cookies-props.png"/>
+						</figure>
+					</section>
+					<section>
+						<h4>Cookies в Express?</h4>
+						<pre class="highlight js">
+							<code data-line-numbers="3|7|11|12-13">
+import * as express from 'express';
+import * as cookieParser from 'cookie-parser';
+	
+const app = express();
+
+app.use(cookieParser());
+
+app.get('/', function (req, res) {
+	const token = 'some token';
+	console.log('Cookies: ', req.cookies);
+	res.cookie('user', token, { maxAge: 60 * 60 * 24 * 30, httpOnly: true, secure: true });
+	res.setHeader('Set-Cookie', `user=${token};`);
+	res.send(token);
+});
+							</code>
+						</pre>
+					</section>
+				</section>
+
+				<section>
+					<h3>Оторизация и автентикация</h3>
+
+					<p class="fragment fade-in">Оторизация - процес на предоставяне на възможност на някого за достъп до даден ресурс.</p>
+					<p class="fragment fade-in">Автентикация - идентифициране на потребител.</p>
+				</section>
+
+				<section>
+					<h3>Пароли</h3>
+
+					<p>Никога не трябва паролите да се съхраняват в чист вид, както в модела на данните, така и в самата база данни.</p>
+				</section>
+
+				<section>
+					<h3>Хеширащи функции</h3>
+
+					<p>На даден низ съпоставят друг низ с фиксиран размер.</p>
+					<p class="fragment fade-in">Хеширащите функции имат две важни свойства:</p>
+					<ul>
+						<li class="fragment fade-in">Функцията е необратима.</li>
+						<li class="fragment fade-in">Функцията е детерминистична.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Хеширане на пароли в Express?</h3>
+					<pre class="highlight js">
+						<code data-line-numbers="2|4|5-6">
+import * as bcrypt from 'bcrypt';
+
+bcrypt.hash(user.password, 10, async (error: Error, hash: string) => {
+	await User.create(
+		{ username: user.username, password: hash, email: user.email }, 
+		(error: Error, newUser: IUser) => {
+			if (error) {
+				console.error(error);
+			}
+		});
+});
+						</code>
+					</pre>
+				</section>
+
+				<section>
+					<h3>Автентикация с Express?</h3>
+					<pre class="highlight js">
+						<code data-line-numbers="3|14-16">
+import { Request, Response } from 'express';
+import * as bcrypt from 'bcrypt';
+import UserController from '../controllers/user-controller';
+
+let controller = new UserController();
+
+const auth = async (request: Request, response: Response, next: () => void) => {
+	const { username, password } = request.body;
+
+	const user = await controller.findUser(username);
+
+	if (user) {
+		bcrypt.compare(
+			password, 
+			user.password, 
+			(error: Error, result: boolean) => {
+				if (result) {
+					next();
+				} else {
+					response.status(401).send('Unauthorized');
+				}
+			});
+	}
+}
+						</code>
+					</pre>
+				</section>
+
+				<section><h3>Въпроси?</h3></section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
