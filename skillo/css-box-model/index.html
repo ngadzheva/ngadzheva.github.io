@@ -1,0 +1,253 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>CSS Box Model</title>
+
+		<link rel="stylesheet" href="../../dist/reset.css">
+		<link rel="stylesheet" href="../../dist/reveal.css">
+		<link rel="stylesheet" href="../../dist/theme/white.css" id="theme">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../../plugin/highlight/monokai.css" id="highlight-theme">
+
+		<style>
+			.size {
+				font-size: 38px;
+			}
+
+			.bold {
+				font-weight: bold;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides size">
+				<section>
+					<h2>CSS Box модел</h2>
+				</section>
+
+				<section>
+					<h2>Display</h2>
+					<section>
+						<ul>
+							<li class="fragment fade-in"><span class="bold">display:none</span> - елементът е скрит и страницата се рендерира все едно той въобще не съществува</li>
+							<li class="fragment fade-in"><span class="bold">display:inline</span> - елементът се разглежда като обикновен текст и следващите го елементи продължават непосредствено след него (вдясно от последния символ)</li>
+							<li class="fragment fade-in"><span class="bold">display:block</span> - елементът се разглежда като правоъгълник - той има width и height property-та и елементите след него продължават на долния ред</li>
+						</ul>
+					</section>
+
+					<section>
+						<ul>
+							<li class="fragment fade-in"><span class="bold">display:inline-block</span> - средно-аритметично между първите 2. Елементът има височина и ширина, но откъм гледна точка на следващите елементи е все едно, че е бил inline и те продължават вдясно от него</li>
+							<li class="fragment fade-in"><span class="bold">display:table, display:table-row, display:table-cell</span> - показват се, както биха се показвали съответните елементи на таблица</li>
+							<li class="fragment fade-in"><span class="bold">display: flex, display: grid</span> - responsive design</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<h2>Box модел</h2>
+					<section>
+						<figure>
+							<img src="images/box-model.png"/>
+						</figure>
+					</section>
+					
+					<section>
+						<ul>
+							<li class="fragment fade-in"><span class="bold">width и height</span>: ширина и височина на съдържането</li>
+							<li class="fragment fade-in"><span class="bold">border</span>: рамка около съдържанието</li>
+							<li class="fragment fade-in"><span class="bold">padding</span>: разстояние между рамкатa и съдържанието</li>
+							<li class="fragment fade-in"><span class="bold">margin</span>: разстояние между дадения елемент и другите такива</li>
+						</ul>
+					</section>
+
+					<section>
+						<figure>
+							<img src="images/boxmodel.gif"/>
+						</figure>
+
+						<p>box-sizing - определя кой от двата box модела ще се използва</p>
+					</section>
+
+					<section>
+						<h4>Рамка</h4>
+						<ul>
+							<li class="fragment fade-in"><span class="bold">border-style</span>: тип на рамката</li>
+							<li class="fragment fade-in"><span class="bold">border-width</span>: дебелина на рамката</li>
+							<li class="fragment fade-in"><span class="bold">border-color</span>: цвят на рамката</li>
+							<li class="fragment fade-in"><span class="bold">border</span>: дебелина, тип и цвят на рамката</li>
+							<li class="fragment fade-in"><span class="bold">border-radius</span>: колко заоблена да е рамката</li>
+						</ul>
+					</section>
+
+					<section>
+						<h4>Padding</h4>
+						<ul>
+							<li class="fragment fade-in">padding-top, padding-right, padding-bottom, padding-left</li>
+							<li class="fragment fade-in">padding: top right bottom left (по часовниковата стрелка, започвайки отгоре)</li>
+							<li class="fragment fade-in">padding: top left/right bottom</li>
+							<li class="fragment fade-in">padding: top/bottom left/right</li>
+							<li class="fragment fade-in">padding: all</li>
+						</ul>
+					</section>
+
+					<section>
+						<h4>Margin</h4>
+						<ul>
+							<li class="fragment fade-in">margin-top, margin-right, margin-bottom, margin-left</li>
+							<li class="fragment fade-in">margin: top right bottom left (по часовниковата стрелка, започвайки отгоре)</li>
+							<li class="fragment fade-in">margin: top left/right bottom</li>
+							<li class="fragment fade-in">margin: top/bottom left/right</li>
+							<li class="fragment fade-in">margin: all</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<h1>Пример</h1>
+				</section>
+
+				<section>
+					<h2>Position</h2>
+					<section>
+						<ul>
+							<li class="fragment fade-in"><span class="bold">position</span> - static / relative / absolute / fixed</li>
+							<li class="fragment fade-in"><span class="bold">position: static</span> - Това е по default. Не позволява отместване.</li>
+							<li class="fragment fade-in">Ако зададем друго, получаваме и property-тата top, right, bottom, left.</li>
+						</ul>
+					</section>
+
+					<section>
+						<ul>
+							<li class="fragment fade-in"><span class="bold">position: relative</span> - Позволява отместване (транслация) спрямо текущата позиция в дадената посока</li>
+							<li class="fragment fade-in"><span class="bold">position: absolute</span> - Абсолютно позициониране спрямо най-близкия родител със зададен position (!=static). Стойностите trbl задават разстоянието до съответния край на родителя</li>
+							<li class="fragment fade-in"><span class="bold">position: fixed</span> - Фиксира елемента на дадената позиция на екрана. Стойностите trbl задават разстояние до съответния край на екрана (viewport-a) - не работи добре в някои мобилни браузъри</li>
+							<li class="fragment fade-in"><span class="bold">position: sticky</span> - Фиксира елемента на дадената позиция на scroll на страницата от потребителя</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<h1>Пример</h1>
+				</section>
+
+				<section>
+					<h2>Float + Clear</h2>
+					<section>
+						<figure>
+							<img src="images/float.png"/>
+						</figure>
+					</section>
+
+					<section>
+						<ul>
+							<li class="fragment fade-in"><span class="bold">float</span> - left / right / none - познато като text-wrap в Word.</li>
+							<li class="fragment fade-in">Както при position: absolute така и при float родителят може да свърши прекалено рано.</li>
+							<li class="fragment fade-in">Затова има clear - left / right / both / none. Елемент с clear ще започне на нов ред и така ще оправи размера на родителя си.</li>
+						</ul>
+					</section>
+
+					<section>
+						<pre class="css">
+							<code>
+			.clearfix:after {
+			  content: "";
+			  visibility: hidden;
+			  display: block;
+			  height: 0;
+			  clear: both;
+			}
+							</code>
+						</pre>
+					</section>
+				</section>
+
+				<section>
+					<h2>Хоризонтално и вертикално подравняване</h2>
+
+					<section>
+						<h4>Центриране на елемент по хоризонтала</h4>
+						<pre class="css">
+							<code>
+			  .center {
+				margin: auto;
+				width: 50%;
+			  }
+							</code>
+						</pre>
+					</section>
+					
+					<section>
+						<h4>Центриране на текст по хоризонтала</h4>
+						<pre class="css">
+							<code>
+			  .center {
+				text-align: center;
+			  }
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<h4>Вертикално подравняване</h4>
+						<ul>
+							<li class="fragment fade-in"><span class="bold">
+								vertical-align</span> - top, bottom, middle, стойност.
+								<ul>
+									<li class="fragment fade-in">На клетка на таблица - позиционира съдържанието.</li>
+							<li class="fragment fade-in">На елемент с display: inline-block - позиционира го спрямо съседите му.</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h4>Центриране на елемент по вертицала</h4>
+						<pre class="css">
+							<code>
+			.center {
+			  height: 200px;
+			  position: relative;
+			  border: 3px solid green;
+			}
+				
+			.center element {
+			  margin: 0;
+			  position: absolute;
+			  top: 50%;
+			  left: 50%;
+			  transform: translate(-50%, -50%);
+			}
+							</code>
+						</pre>
+					</section>
+				</section>
+
+				<section>
+                    <h1>Въпроси?</h1>
+                </section>
+			</div>
+		</div>
+
+		<script src="../../dist/reveal.js"></script>
+		<script src="../../plugin/notes/notes.js"></script>
+		<script src="../../plugin/markdown/markdown.js"></script>
+		<script src="../../plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>

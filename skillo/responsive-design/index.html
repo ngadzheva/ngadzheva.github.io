@@ -1,0 +1,208 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Responsive Design</title>
+
+		<link rel="stylesheet" href="../../dist/reset.css">
+		<link rel="stylesheet" href="../../dist/reveal.css">
+		<link rel="stylesheet" href="../../dist/theme/white.css" id="theme">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../../plugin/highlight/monokai.css" id="highlight-theme">
+
+		<style>
+			.size {
+				font-size: 38px;
+			}
+
+			.bold {
+				font-weight: bold;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides size">
+				<section>
+					<h2>Responsive дизайн</h2>
+				</section>
+
+				<section>
+					<h2>Какво е responsive дизайн?</h2>
+                    <p>Responsive дизайнът помага страниците ни да изглеждат добре на различни размери екрани.</p>
+				</section>
+
+                <section>
+					<h2>Какво е viewport?</h2>
+                    <p>Видимата за потребителя част от уеб страницата. Големината зависи от екрана на устройството, на което е отворена страницата.</p>
+                    <pre class="html fragment fade-in">
+                        <code>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        </code>
+                    </pre>
+				</section>
+
+				<section>
+					<h2>Правила за разработване на responsive дизайн</h2>
+					<section>
+						<ul>
+							<li class="fragment fade-in">Разработете дизайна първо за мобилни устройства.</li>
+                            <li class="fragment fade-in">Не разчитайте само на един конкретен размер на viewport.</li>
+                            <li class="fragment fade-in">Избягвайте фиксирани размери на елементите.</li>
+                            <li class="fragment fade-in">Задайте min-width или max-width на елементите и ги комбинирайте с "плаващ" размер.</li>
+						</ul>
+					</section>
+					
+					<section>
+						<ul>
+							<li class="fragment fade-in">Използвайте media query за дефиниране на различна стилизация за големи и малки екрани.</li>
+							<li class="fragment fade-in">Използвайте модерни техники за създаване на layout на вашите страници като flex и grid.</li>
+                            <li class="fragment fade-in">Променяйте layout-a и размерите на елементите в зависимост от големината на екрана.</li>
+                            <li class="fragment fade-in">Приоритизирайте и скрийте съдържанието в зависимост от контекста на потребителя.</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<h2>Media Queries</h2>
+					<section>
+                        <pre class="css fragment fade-in">
+                            <code>
+                    @media not|only mediatype and (expressions) {
+                        CSS-Code;
+                    }
+                            </code>
+                        </pre>
+                        <p>Дават възможност да определяме различни стилове на елементите за различни видове медия.</p>
+                        <p>Те могат да проверяват много неща като:</p>
+						<ul>
+							<li class="fragment fade-in">ширина и височина на viewport-a</li>
+							<li class="fragment fade-in">ширина и височина на устройството</li>
+							<li class="fragment fade-in">ориентация на екрана на устройството</li>
+							<li class="fragment fade-in">резолюция на екрана</li>
+						</ul>
+					</section>
+
+                    <section>
+                        <h4>Определяне на breakpoints</h4>
+                        <p>Breakpoint-ите определят при какъв размер на екрана да се променят стиловете на страницата.</p>
+						<pre class="css fragment fade-in">
+                            <code>
+                    .col {
+                        width: 100%;
+                    }
+
+                    @media only screen and (min-width: 768px) {
+                        .col {
+                            width: 50%;
+                        }
+                    }
+                            </code>
+                        </pre>
+					</section>
+
+                    <section>
+                        <h4>Стандартни breakpoint-и</h4>
+						<pre class="css fragment fade-in">
+                            <code>
+                /* Extra small devices (phones, 600px and down) */
+                @media only screen and (max-width: 600px) {...}
+                
+                /* Small devices (portrait tablets and large phones, 600px and up) */
+                @media only screen and (min-width: 600px) {...}
+                
+                /* Medium devices (landscape tablets, 768px and up) */
+                @media only screen and (min-width: 768px) {...}
+                
+                /* Large devices (laptops/desktops, 992px and up) */
+                @media only screen and (min-width: 992px) {...}
+                
+                /* Extra large devices (large laptops and desktops, 1200px and up) */
+                @media only screen and (min-width: 1200px) {...}
+                            </code>
+                        </pre>
+					</section>
+
+                    <section>
+                        <h4>Засичане на ориентацията на екрана на устройството</h4>
+                        <p>С media query можем да променим layout-a на страницата ни в зависимост от ориентацията на екрана на устройството.</p>
+						<pre class="css fragment fade-in">
+                            <code>
+                @media only screen and (orientation: landscape) {
+                    body {
+                        background-color: lightblue;
+                    }
+                }
+                            </code>
+                        </pre>
+					</section>
+
+                    <section>
+                        <h1>Пример</h1>
+                    </section>
+				</section>
+
+				<section>
+					<h2>Видове layout-и</h2>
+					<section>
+						<ul>
+							<li class="fragment fade-in"><span class="bold">Multicolumn</span> - колони за текст, не се държи добре на мобилни устройства</li>
+							<li class="fragment fade-in"><span class="bold">Flexbox</span> - предоставя доста флексибилност в подреждането на елементи в контейнер едномерно</li>
+                            <li class="fragment fade-in"><span class="bold">Grid</span> - най-често използваният layout за подреждане на елементи в 2D пространството</li>
+						</ul>
+					</section>
+
+                    <section>
+                        <h4>Multicolumn layout</h4>
+                        <!-- Картинка -->
+                    </section>
+
+					<section>
+                        <h1>Пример</h1>
+                    </section>
+
+                    <section>
+                        <h4>Flex layout</h4>
+                        <!-- Картинка -->
+                    </section>
+
+					<section>
+                        <h1>Пример</h1>
+                    </section>
+
+                    <section>
+                        <h4>Grid layout</h4>
+                        <!-- Картинка -->
+                    </section>
+
+					<section>
+                        <h1>Пример</h1>
+                    </section>
+				</section>
+
+				<section>
+                    <h1>Въпроси?</h1>
+                </section>
+			</div>
+		</div>
+
+		<script src="../../dist/reveal.js"></script>
+		<script src="../../plugin/notes/notes.js"></script>
+		<script src="../../plugin/markdown/markdown.js"></script>
+		<script src="../../plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>

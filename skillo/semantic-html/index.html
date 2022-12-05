@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Семантичен HTML</title>
+
+		<link rel="stylesheet" href="../../dist/reset.css">
+		<link rel="stylesheet" href="../../dist/reveal.css">
+		<link rel="stylesheet" href="../../dist/theme/white.css" id="theme">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../../plugin/highlight/monokai.css" id="highlight-theme">
+
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides size">
+                <section>
+					<h2>Семантичен HTML</h2>
+				</section>
+
+                <section>
+					<h2>Какво означава семантичен HTML?</h2>
+					<ul>
+						<li class="fragment fade-in">семантичен елемент = елемент със смисъл</li>
+						<li class="fragment fade-in">Семантичните елементи описват ясно своето предназначение както на браузъра, така и на разработчика</li>
+                        <li class="fragment fade-in">Семантичният уеб позволява данните да се споделят и преизползват лесно между различни приложения</li>
+					</ul>
+				</section>
+
+                <section>
+					<h2>Семантични срещу несамнтични HTML елементи?</h2>
+                    <!-- Картинка -->
+				</section>
+
+                <section>
+					<h2>Новите семантични елементи</h2>
+                    <section>
+                        <ul>
+                            <li class="fragment fade-in">header - заглавна част, обикновено съдържа лого и евентуално навигация</li>
+                            <li class="fragment fade-in">footer - завършваща част, обикновено съдържа copyright и други</li>
+                            <li class="fragment fade-in">aside - странична част, съдържаща реклами и неща, свързани с основния материал</li>
+                            <li class="fragment fade-in">nav - навигация</li>
+                            <li class="fragment fade-in">main - основно съдържание на страницата</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <ul>
+                            <li class="fragment fade-in">article - съдържа самостоятелно обособена информация, която може да бъде изведена от контекста на страницата и да не губи своя смисъл</li>
+                            <li class="fragment fade-in">section - елемент, който обособява секция от страницата</li>
+                            <li class="fragment fade-in">figure - контейнер за изображения, очаква се да съдържа figcaption</li>
+                            <li class="fragment fade-in">figcaption - име или коментар към изображение</li>
+                        </ul>
+                    </section>
+				</section>
+
+                <section>
+                    <h1>Пример</h1>
+                </section>
+
+                <section>
+                    <h2>Форми</h2>
+                    <p>Използват се за събиране на потребителски вход, който често след това бива изпратен към някакъв сървър за обработка.</p>
+                </section>
+                
+                <section>
+                    <h2>Основни елементи</h2>
+                    <section>
+                        <ul>
+                            <li class="fragment fade-in">form - контейнер на формата. Важни са атрибутите method и action</li>
+                            <li class="fragment fade-in">fieldset - елемент, групиращ релевантни части от формата</li>
+                            <li class="fragment fade-in">legend - заглавие на fieldset</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <ul>
+                            <li class="fragment fade-in">
+                                input - поле за въвеждане на текст. Един от малкото самозатварящи се елементи.
+                                <ul>
+                                    <li class="fragment fade-in">name - ключ, чрез който се достъпват данните на сървъра</li>
+                                    <li class="fragment fade-in">type - определя типа на input полето</li>
+                                    <li class="fragment fade-in">id - идентификатор, който може да се използва от label тага</li>
+                                    <li class="fragment fade-in">pattern - регулярен израз за валидация</li>
+                                    <li class="fragment fade-in">required - прави полето задължително</li>
+                                    <li class="fragment fade-in">disabled - забранява да се въвежда текст в полето</li>
+                                    <li class="fragment fade-in">autofocus - автоматично курсорът е фокусиран върху полето</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <ul>
+                            <li class="fragment fade-in">label - етикет на дадено поле</li>
+                            <li class="fragment fade-in">textarea - текстово поле с много редове</li>
+                            <li class="fragment fade-in">button - бутон за изпращане на данните от формата към някакъв сървър или за изпълнение на някакъв javascript код, свързан със страницата</li>
+                            <li class="fragment fade-in">select - падащо меню</li>
+                            <li class="fragment fade-in">option - опция от падащото меню</li>
+                            <li class="fragment fade-in">optgroup - група от опции</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <h1>Пример</h1>
+                </section>
+
+                <section>
+					<h2>Мултимедия в уеб</h2>
+                    <section>
+                        <ul>
+                            <li class="fragment fade-in">Мултимедията в уеб се свързва с представянето на звук, музика, видео и различни анимации и графики в уеб страниците.</li>
+                            <li class="fragment fade-in">Мултимедиините елементи се съхраняват като медия файлове.</li>
+                            <li class="fragment fade-in">Мултимедиините файлове имат различен формат в зависимост от типа медия.</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h4>Видео формати, поддържани от HTML</h4>
+                        <ul>
+                            <li class="fragment fade-in">MP4</li>
+                            <li class="fragment fade-in">WebM</li>
+                            <li class="fragment fade-in">Ogg</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h4>Аудио формати, поддържани от HTML</h4>
+                        <ul>
+                            <li class="fragment fade-in">MP3</li>
+                            <li class="fragment fade-in">MP4</li>
+                            <li class="fragment fade-in">WAV</li>
+                            <li class="fragment fade-in">Ogg</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h4>HTML media елементи</h4>
+                        <ul>
+                            <li class="fragment fade-in">video - изпълнява видео</li>
+                            <li class="fragment fade-in">audio - изпълнява аудио</li>
+                            <li class="fragment fade-in">canvas - рендерира графика/анимация</li>
+                            <li class="fragment fade-in">svg - рендерира svg изображения</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h1>Пример</h1>
+                    </section>
+				</section>
+
+                <section>
+                    <h1>Въпроси?</h1>
+                </section>
+            </div>
+        </div>
+
+        <script src="../../dist/reveal.js"></script>
+		<script src="../../plugin/notes/notes.js"></script>
+		<script src="../../plugin/markdown/markdown.js"></script>
+		<script src="../../plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+    </body>
+</html>

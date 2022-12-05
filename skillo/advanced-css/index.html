@@ -1,0 +1,241 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>CSS Advanced</title>
+
+		<link rel="stylesheet" href="../../dist/reset.css">
+		<link rel="stylesheet" href="../../dist/reveal.css">
+		<link rel="stylesheet" href="../../dist/theme/white.css" id="theme">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../../plugin/highlight/monokai.css" id="highlight-theme">
+
+		<style>
+			.size {
+				font-size: 38px;
+			}
+
+			.bold {
+				font-weight: bold;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides size">
+				<section>
+					<h2>CSS трансформации и анимации</h2>
+				</section>
+
+				<section>
+					<h2>Градиент</h2>
+					<section>
+                        <p>CSS градиентът позволява да визуализираме плавен преход между 2 или повече цвята.</p>
+                        <p>CSS дефинира 3 вида градиенти:</p>
+						<ul>
+							<li class="fragment fade-in"><span class="bold">линеен градиент</span> - надолу, нагоре, наляво, надясно или по диагонал</li>
+							<li class="fragment fade-in"><span class="bold">радиален градиент</span> - дефиниран от централна точка</li>
+							<li class="fragment fade-in"><span class="bold">коничен градиент</span> - върти се около централна точка</li>
+						</ul>
+					</section>
+
+					<section>
+                        <h4>Линеен градиент</h4>
+                        <div class="bold">background-image: linear-gradient(direction, color-stop1, color-stop2, ...);</div>
+					</section>
+
+                    <section>
+                        <h4>Радиален градиент</h4>
+                        <div class="bold">background-image: radial-gradient(shape size at position, start-color, ..., last-color);</div>
+					</section>
+
+                    <section>
+                        <h4>Коничен градиент</h4>
+                        <div class="bold">background-image: conic-gradient([from angle] [at position,] color [degree], color [degree], ...);</div>
+					</section>
+				</section>
+
+                <section>
+					<h1>Пример</h1>
+				</section>
+
+				<section>
+					<h2>Сянка</h2>
+					<section>
+						<p>Със CSS можем да слагаме сянка на текст и на елементи</p>
+					</section>
+					
+					<section>
+						<ul>
+							<li class="fragment fade-in"><span class="bold">text-shadow</span>: x-offset y-offset blur color</li>
+							<li class="fragment fade-in"><span class="bold">box-shadow</span>: x-offset y-offset blur spread color inset. Може да се изредят няколко чрез запетайка, подобно на background.</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<h1>Пример</h1>
+				</section>
+
+				<section>
+					<h2>Трансформации</h2>
+					<section>
+                        <h4>2D трансформации</h4>
+                        <div class="bold">transform: function();</div>
+						<ul>
+							<li class="fragment fade-in"><span class="bold">translate</span> - премества елемент по хоризонтала и/или вертикала</li>
+							<li class="fragment fade-in"><span class="bold">rotate</span> - завърта елемент по часовниковата срелка или обратно на часовниковата стрелка</li>
+							<li class="fragment fade-in"><span class="bold">translate</span> - увеличава или намалява размера на елемент</li>
+							<li class="fragment fade-in"><span class="bold">skew</span> - накланя елемент по хоризонтала и/или вертикала</li>
+						</ul>
+					</section>
+
+                    <section>
+                        <h1>Пример</h1>
+                    </section>
+
+                    <section>
+                        <h4>3D трансформации</h4>
+                        <div class="bold">transform: function();</div>
+						<ul>
+							<li class="fragment fade-in">Същите методи като при 2D трансформациите, но с добавена Z координата</li>
+							<li class="fragment fade-in"><span class="bold">perspective</span> - дефинира под каква перспектива ще се визуализират 3D елементите на екрана</li>
+						</ul>
+					</section>
+
+                    <section>
+                        <h1>Пример</h1>
+                    </section>
+				</section>
+
+				<section>
+					<h2>Преходи</h2>
+					<section>
+						<p>CSS преходите дават възможност да променим плавно някакви стилове на елементи.</p>
+                        <p>За да направим такъв плавен преход, трябва да определим 2 неща:</p>
+                        <ul>
+							<li class="fragment fade-in">стила, който искаме да променим</li>
+							<li class="fragment fade-in">за какво време искаме да се случи промяната</li>
+						</ul>
+					</section>
+
+					<section>
+						<ul>
+							<li class="fragment fade-in"><span class="bold">transition-delay</span> - определя след колко време ще започне прехода в секунди</li>
+							<li class="fragment fade-in"><span class="bold">transition-duration</span> - определя времето за извършване на прехода в секунди</li>
+                            <li class="fragment fade-in"><span class="bold">transition-property</span> - определя стила, чиято стойност ще се сменя</li>
+                            <li class="fragment fade-in"><span class="bold">transition-timing-function</span> - определя скоростта на изпълнение на прехода</li>
+                            <li class="fragment fade-in"><span class="bold">transition</span> - определя горните 4 наведнъж</li>
+						</ul>
+					</section>
+
+					<section>
+                        <h1>Пример</h1>
+                    </section>
+				</section>
+
+				<section>
+					<h2>Анимации</h2>
+
+					<section>
+						<p>Със CSS можем да анимираме HTML елементи, без да се налага да използваме за целта JavaScript.</p>
+                        <p>За да направим анимация, трябва да дефинираме кадри за извършването на анимацията.</p>
+                        <p>Кадрите определят в какъв момент от времето какви стилове на анимирания елемент ще се променят и как.</p>
+					</section>
+					
+					<section>
+						<h4>Дефиниране на кадри</h4>
+						<pre class="css">
+							<code>
+                /* The animation code */
+                @keyframes example {
+                    from {background-color: red;}
+                    to {background-color: yellow;}
+                }
+                
+                /* The element to apply the animation to */
+                div {
+                    width: 100px;
+                    height: 100px;
+                    background-color: red;
+                    animation-name: example;
+                    animation-duration: 4s;
+                }
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<h4>Забавяне на анимация</h4>
+						<pre class="css">
+							<code>
+                        div {
+                            width: 100px;
+                            height: 100px;
+                            position: relative;
+                            background-color: red;
+                            animation-name: example;
+                            animation-duration: 4s;
+                            animation-delay: 2s;
+                        }
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<h4>Определяне колко пъти ще се изпълнпва анимацията</h4>
+						<pre class="css">
+							<code>
+                        div {
+                            width: 100px;
+                            height: 100px;
+                            position: relative;
+                            background-color: red;
+                            animation-name: example;
+                            animation-duration: 4s;
+                            animation-iteration-count: 3;
+                        }
+							</code>
+						</pre>
+					</section>
+
+                    <section>
+						<h4>Определяне на скоростта на анимацията</h4>
+						<pre class="css">
+							<code>
+            #div1 {animation-timing-function: linear;}
+            #div2 {animation-timing-function: ease;}
+            #div3 {animation-timing-function: ease-in;}
+            #div4 {animation-timing-function: ease-out;}
+            #div5 {animation-timing-function: ease-in-out;}
+							</code>
+						</pre>
+					</section>
+				</section>
+
+				<section>
+                    <h1>Въпроси?</h1>
+                </section>
+			</div>
+		</div>
+
+		<script src="../../dist/reveal.js"></script>
+		<script src="../../plugin/notes/notes.js"></script>
+		<script src="../../plugin/markdown/markdown.js"></script>
+		<script src="../../plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>

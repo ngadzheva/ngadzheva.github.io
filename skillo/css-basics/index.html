@@ -1,0 +1,444 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>CSS Basics</title>
+
+		<link rel="stylesheet" href="../../dist/reset.css">
+		<link rel="stylesheet" href="../../dist/reveal.css">
+		<link rel="stylesheet" href="../../dist/theme/white.css" id="theme">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../../plugin/highlight/monokai.css" id="highlight-theme">
+
+		<style>
+			.size {
+				font-size: 38px;
+			}
+
+			.red {
+				color: red;
+			}
+
+			.underline {
+				text-decoration: underline;
+			}
+
+			.overline {
+				text-decoration: overline;
+			}
+
+			.line-through {
+				text-decoration: line-through;
+			}
+
+			.uppercase {
+				text-transform: uppercase;
+			}
+
+			.capitalize {
+				text-transform: capitalize;
+			}
+
+			.italic {
+				font-style: italic;
+			}
+
+			.bold {
+				font-weight: bold;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides size">
+				<section>
+					<h2>Основи на CSS</h2>
+				</section>
+
+				<section>
+					<h2>Cascading Style Sheets</h2>
+					<p>HTML описва съдържанието, CSS описва визуализацията. Тоест:</p>
+					<ul>
+						<li class="fragment fade-in">Как да са подредени нещата на екрана.</li>
+						<li class="fragment fade-in">Кое колко да е голямо.</li>
+						<li class="fragment fade-in">Какъв цвят да е даден текст, фон и тн.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Как работи CSS?</h2>
+					<p>За да можем лесно да стилизираме дадена страница избираме компонентите, които искаме да стилизираме (чрез някакъв селектор) и задаваме стойности на property-тата, които искаме да променим. Съответно браузърът ще ги промени на всички елементи, които е match-нал даденият селектор.</p>
+				</section>
+
+				<section>
+					<h2>CSS Синтаксис</h2>
+					<figure>
+						<img src="images/css-syntax.png"/>
+					</figure>
+				</section>
+
+				<section>
+					<h2>Използване на CSS</h2>
+					<p>Има 3 начина на използване на CSS:</p>
+					
+					<section>
+						<p class="fragment fade-in">
+							като стойност на style атрибута на html елемент
+						</p>
+						<pre class="html fragment fade-in">
+							<code>
+	<a href="//google.com" style="color:red">Click Here</a>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<p class="fragment fade-in">
+							като добавим style tag в HTML-a (обикновено в head-а)
+						</p>
+						<pre class="html fragment fade-in">
+							<code>
+		   <style> a { color: red } </style>
+							</code>
+						</pre>
+					</section>
+					
+					<section>
+						<p class="fragment fade-in">
+							като го свържем като външен файл
+						</p>
+						<pre class="html fragment fade-in">
+							<code>
+		 <link href="style.css" rel="stylesheet"/>
+							</code>
+						</pre>
+					</section>
+				</section>
+
+				<section>
+					<h1>Пример</h1>
+				</section>
+
+				<section>
+					<h2>Основни CSS селектори</h2>
+					<section>
+						<dl>
+							<dt class="fragment fade-in">*</dt>
+							<dd class="fragment fade-in">Избира всички елементи - не се препоръчва.</dd>
+						</dl>
+						<pre class="html fragment fade-in">
+							<code>
+<foo>This is a fake foo element</foo>
+<bar>This is a fake bar element</bar>
+<div class="bar">Element with bar class</div>
+<bar>This is a fake bar element</bar>
+<div id="baz">Element with baz id</div>
+<foo class="bar">
+  <bar>Fake bar element nested in fake foo element</bar>
+</foo>
+<bar>This is a fake bar element</bar>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<dl>
+							<dt class="fragment fade-in">foo</dt>
+							<dd class="fragment fade-in">Избира елементи с таг foo</dd>
+						</dl>
+						<pre class="html fragment fade-in">
+							<code data-line-numbers="2,7,9">
+<foo>This is a fake foo element</foo>
+<bar>This is a fake bar element</bar>
+<div class="bar">Element with bar class</div>
+<bar>This is a fake bar element</bar>
+<div id="baz">Element with baz id</div>
+<foo class="bar">
+  <bar>Fake bar element nested in fake foo element</bar>
+</foo>
+<bar>This is a fake bar element</bar>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<dl>
+							<dt class="fragment fade-in">.bar</dt>
+							<dd class="fragment fade-in">Избира елементи с атрибут клас = bar</dd>
+						</dl>
+						<pre class="html fragment fade-in">
+							<code data-line-numbers="4,7,9">
+<foo>This is a fake foo element</foo>
+<bar>This is a fake bar element</bar>
+<div class="bar">Element with bar class</div>
+<bar>This is a fake bar element</bar>
+<div id="baz">Element with baz id</div>
+<foo class="bar">
+  <bar>Fake bar element nested in fake foo element</bar>
+</foo>
+<bar>This is a fake bar element</bar>
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<dl>	
+							<dt class="fragment fade-in">#baz</dt>
+							<dd class="fragment fade-in">Избира елементи с атрибут id = baz</dd>
+						</dl>
+						<pre class="html fragment fade-in">
+							<code data-line-numbers="6">
+<foo>This is a fake foo element</foo>
+<bar>This is a fake bar element</bar>
+<div class="bar">Element with bar class</div>
+<bar>This is a fake bar element</bar>
+<div id="baz">Element with baz id</div>
+<foo class="bar">
+  <bar>Fake bar element nested in fake foo element</bar>
+</foo>
+<bar>This is a fake bar element</bar>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<dl>
+							<dt class="fragment fade-in">foo bar</dt>
+							<dd class="fragment fade-in">Избира елементи bar, наследници на елементи foo</dd>
+						</dl>
+						<pre class="html fragment fade-in">
+							<code data-line-numbers="8,10">
+<foo>This is a fake foo element</foo>
+<bar>This is a fake bar element</bar>
+<div class="bar">Element with bar class</div>
+<bar>This is a fake bar element</bar>
+<div id="baz">Element with baz id</div>
+<foo class="bar">
+  <bar>Fake bar element nested in fake foo element</bar>
+  <div>
+    <bar>Fake bar inside div inside foo</bar>
+  </div>
+</foo>
+<bar>This is a fake bar element</bar>
+							</code>
+						</pre>
+					</section>
+					<section>
+						<dl>
+							<dt class="fragment fade-in">foo, bar</dt>
+							<dd class="fragment fade-in">Може да се изброят няколко селектора и ще избере обединението им</dd>
+						</dl>
+						<pre class="html fragment fade-in">
+							<code data-line-numbers="2,3,5,7,8,9,10">
+<foo>This is a fake foo element</foo>
+<bar>This is a fake bar element</bar>
+<div class="bar">Element with bar class</div>
+<bar>This is a fake bar element</bar>
+<div id="baz">Element with baz id</div>
+<foo class="bar">
+  <bar>Fake bar element nested in fake foo element</bar>
+</foo>
+<bar>This is a fake bar element</bar>
+							</code>
+						</pre>
+					</section>
+				</section>
+
+
+				<section>
+					<h2>Още малко селектори</h2>
+					
+					<section>
+						<dl>
+							<dt class="fragment fade-in">foo > bar</dt>
+							<dd class="fragment fade-in">Избира елементи bar, директни наследници на елементи foo</dd>
+						</dl>
+						<pre class="html fragment fade-in">
+							<code data-line-numbers="8">
+<foo>This is a fake foo element</foo>
+<bar>This is a fake bar element</bar>
+<div class="bar">Element with bar class</div>
+<bar>This is a fake bar element</bar>
+<div id="baz">Element with baz id</div>
+<foo class="bar">
+  <bar>Fake bar element nested in fake foo element</bar>
+  <div>
+    <bar>Fake bar inside div inside foo</bar>
+  </div>
+</foo>
+<bar>This is a fake bar element</bar>
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<dl>
+							<dt class="fragment fade-in">foo + bar</dt>
+							<dd class="fragment fade-in">Избира елементи bar, които следват непосредствено след елементи foo</dd>
+						</dl>
+						<pre class="html fragment fade-in">
+							<code data-line-numbers="3,10">
+<foo>This is a fake foo element</foo>
+<bar>This is a fake bar element</bar>
+<div class="bar">Element with bar class</div>
+<bar>This is a fake bar element</bar>
+<div id="baz">Element with baz id</div>
+<foo class="bar">
+  <bar>Fake bar element nested in fake foo element</bar>
+</foo>
+<bar>This is a fake bar element</bar>
+							</code>
+						</pre>
+					</section>
+
+					<section>
+						<dl>
+							<dt class="fragment fade-in">foo ~ bar</dt>
+							<dd class="fragment fade-in">Избира елементи bar, които следват след елементи foo</dd>
+						</dl>
+						<pre class="html fragment fade-in">
+							<code data-line-numbers="3,5,10">
+<foo>This is a fake foo element</foo>
+<bar>This is a fake bar element</bar>
+<div class="bar">Element with bar class</div>
+<bar>This is a fake bar element</bar>
+<div id="baz">Element with baz id</div>
+<foo class="bar">
+  <bar>Fake bar element nested in fake foo element</bar>
+</foo>
+<bar>This is a fake bar element</bar>
+							</code>
+						</pre>
+					</section>
+				</section>
+
+				<section>
+					<h2>Цветове</h2>
+					<section>
+						<dl>
+							<dt class="fragment fade-in">Име - <span class="red">red</span></dt>
+							<dt class="fragment fade-in"><span class="bold">RGB</span> - <span class="red">rgb(255, 0, 0)</span></dt>
+							<dd class="fragment fade-in">red, green, blue със стойности 0-255</dd>
+							<dt class="fragment fade-in"><span class="bold">HEX</span> - <span class="red">#ff0000, #f00</span></dt>
+							<dd class="fragment fade-in">аналогично, но в 16тичен запис. Второто е кратък запис, когато 2те цифри на всеки цвят съвпадат</dd>
+						</dl>
+					</section>
+
+					<section>
+						<dl>
+							<dt class="fragment fade-in"><span class="bold">HSL</span> - <span class="red">hsl(0, 100%, 50%)</span></dt>
+							<dd class="fragment fade-in">Hue, Saturation, Lightness - задава цвят (тоест ъгъл от цветовия кръг), наситеност 0-100% и осветеност 0-100% </dd>
+							<dt class="fragment fade-in"><span class="bold">RGBA, HSLA</span> - rgba(255, 0, 0, 0.3) hsla(0, 100%, 50%, 0.3)</dt>
+							<dd class="fragment fade-in">последното се нарича алфа канал - стойността задава "непрозрачност" на цвета (0 = transparent, 1 = нормален цвят)</dd>
+						</dl>
+					</section>
+				</section>
+
+				<section>
+					<h2>Фон</h2>
+					<ul>
+						<li class="fragment fade-in"><span class="bold">background-color</span> - цвят на фона</li>
+						<li class="fragment fade-in"><span class="bold">background-position</span> - x и у позициониране на картинка, ако има такава - става чрез думи като top left center или проценти за позиция на центъра или пиксели отместване</li>
+						<li class="fragment fade-in"><span class="bold">background-repeat</span> - repeat-x, repeat-y, repeat, no-repeat, fixed</li>
+						<li class="fragment fade-in"><span class="bold">background-attachment</span> - fixed / scroll</li>
+						<li class="fragment fade-in"><span class="bold">background-image</span> - url("...")</li>
+						<li class="fragment fade-in">background: color position repeat attachment image</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>CSS Метрики</h2>
+					<ul>
+						<li class="fragment fade-in"><span class="bold">px (pixel)</span> - няма нужда от обяснение</li>
+						<li class="fragment fade-in"><span class="bold">pt (point)</span> - мерната единица за размер на шрифта в word (не се препоръчва).</li>
+						<li class="fragment fade-in"><span class="bold">em</span> - 1em = текущия размер на шрифта за съответния елемент. Ако работите с em, то можете да resize-нете всичко лесно просто като промените font-size на html/body.</li>
+						<li class="fragment fade-in">
+							<span class="bold">%</span> - процентите зависят от контекста.
+							<ul>
+								<li class="fragment fade-in">при шрифтове: 100% = 1em = конкретния размер на шрифта</li>
+								<li class="fragment fade-in">в останалите случаи: 100% = съответния размер на даден родител (width, height)</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Текст</h2>
+					<ul>
+						<li class="fragment fade-in"><span class="bold">color</span> - цвят на текста</li>
+						<li class="fragment fade-in">
+							<span class="bold">text-decoration</span> - none / <span class="underline">underline</span> / <span class="overline">overline</span> / <span class="line-through">line-through</span>
+						</li>
+						<li class="fragment fade-in"><span class="bold">text-align</span> - left / right / center / justify</li>
+						<li class="fragment fade-in">
+							<span class="bold">text-transform</span> - none / <span class="uppercase">uppercase</span> / lowercase / <span class="capitalize">capitalize</span>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Шрифт</h2>
+					<ul>
+						<li class="fragment fade-in">
+							<span class="bold">font-style</span> - normal / <span class="italic">italic</span>
+						</li>
+						<li class="fragment fade-in">
+							<span class="bold">font-weight</span> - normal / <span class="bold">bold</span> - има и други стойностти, но при повечето шрифтове те са равни на една от тези
+						</li>
+						<li class="fragment fade-in"><span class="bold">font-size</span> - размер на шрифта</li>
+						<li class="fragment fade-in"><span class="bold">line-height</span> - височина на реда</li>
+						<li class="fragment fade-in"><span class="bold">font-family</span> - кой точно шрифт да се използва ("Times New Roman", Verdana, Consolas, Lucida Console, Arial и тн) - ако изредите няколко, ще се използва първият наличен. Позволява и още 2 стойности - serif и sans-serif.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Размер</h2>
+					<ul>
+						<li class="fragment fade-in">
+							width - ширина на елементите
+							<ul>
+								<li class="fragment fade-in">min-width</li>
+								<li class="fragment fade-in">max-width</li>
+							</ul>
+						</li>
+						<li class="fragment fade-in">
+							height - височина на елементите
+							<ul>
+								<li class="fragment fade-in">min-height</li>
+								<li class="fragment fade-in">max-height</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Други</h2>
+					<ul>
+						<li class="fragment fade-in">opacity - прозрачност на елементите</li>
+						<li class="fragment fade-in">visibility - видимост на елементите</li>
+						<li class="fragment fade-in">overflow - как да се рендерира съдържание, излязло извън рамките на контейнера, в който се намира</li>
+					</ul>
+				</section>
+
+				<section>
+                    <h1>Въпроси?</h1>
+                </section>
+			</div>
+		</div>
+
+		<script src="../../dist/reveal.js"></script>
+		<script src="../../plugin/notes/notes.js"></script>
+		<script src="../../plugin/markdown/markdown.js"></script>
+		<script src="../../plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>

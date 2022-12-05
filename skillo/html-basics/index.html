@@ -1,0 +1,241 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>HTML Basics</title>
+
+		<link rel="stylesheet" href="../../dist/reset.css">
+		<link rel="stylesheet" href="../../dist/reveal.css">
+		<link rel="stylesheet" href="../../dist/theme/white.css" id="theme">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../../plugin/highlight/monokai.css" id="highlight-theme">
+
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides size">
+                <section>
+					<h2>Основи на HTML</h2>
+				</section>
+
+                <section>
+					<h2>HyperText Markup Language</h2>
+					<ul>
+						<li class="fragment fade-in">Markup език за създаване на уеб страници</li>
+						<li class="fragment fade-in">Описва съдържанието и структурата на уеб страниците</li>
+						<li class="fragment fade-in">Има дървовидна структура, която се състои от поредица от елементи</li>
+					</ul>
+				</section>
+
+                <section>
+					<h2>Какво е HTML елемент?</h2>
+                    <!-- Картинка -->
+				</section>
+
+                <section>
+					<h2>Самозатварящи се тагове</h2>
+                    <p>Някои HTML елементи нямат съдържание. Такива елементи се описват с така наречените самозатварящи се тагове</p>
+                    <pre class="html fragment fade-in">
+                        <code>
+                            <img />
+                        </code>
+                    </pre>
+                    <p class="fragment fade-in">Пирмери за такива тагове са br, hr, img, input, link, meta</p>
+				</section>
+
+                <section>
+                    <h1>Пример</h1>
+                    <figure>
+						<img src="images/html-structure.png"/>
+					</figure>
+                </section>
+
+                <section>
+					<h2>Какво е HTML атрибут?</h2>
+                    <ul>
+						<li class="fragment fade-in">Всеки елемент може да има атрибути</li>
+						<li class="fragment fade-in">Атрибутите предоставят допълнителна информация за елементите</li>
+						<li class="fragment fade-in">Атрибутите представляват наредена двойка име="стойност"</li>
+					</ul>
+                    <pre class="html fragment fade-in">
+                        <code>
+            <img src="flower.jpg" alt="Image of a flower" />
+                        </code>
+                    </pre>
+				</section>
+
+                <section>
+                    <h2>Булеви атрибути</h2>
+                    <p>Има някои булеви атрибути, за които ни интересува само наличието им:</p>
+                    <ul>
+						<li class="fragment fade-in">script: async, defer</li>
+						<li class="fragment fade-in">input: autofocus, checked, disabled, required, selected</li>
+						<li class="fragment fade-in">select: multiple</li>
+                        <li class="fragment fade-in">media: autoplay, loop, muted, controls</li>
+					</ul>
+                </section>
+
+                <section>
+                    <h2>HTML Entities</h2>
+                    <p>Съществуват някои запазени символи в HTML, които се използват в синтаксиса на езика. За да ги визуализираме на екрана на браузъра, трябва да използваме така наречените HTML Entities.</p>
+                    <p>Синтаксисът е &entity_name;</p>
+                    <table>
+                        <tr>
+                            <th>Символ</th>
+                            <td>&lt;</td>
+                            <td>&gt;</td>
+                            <td>&amp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <th>Код</th>
+                            <td>& lt ;</td>
+                            <td>& gt ;</td>
+                            <td>& amp ;</td>
+                            <td>& nbsp ;</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <section>
+                    <h2>Основни HTML тагове</h2>
+                    <dl>
+                        <dt>Системни</dt>
+                        <dd>html, body, head, title, script, style, meta, link</dd>
+                        <dt>Структурни</dt>
+                        <dd>div, span, p</dd>
+                        <dt>Списъци</dt>
+                        <dd>ul, ol, li, dl, dt, dd</dd>
+                        <dt>Форми</dt>
+                        <dd>form, fieldset, legend, label, input, textarea, button, select, option, optgroup</dd>
+                        <dt>Таблици</dt>
+                        <dd>table, thead, tfoot, tbody, tr, td, th</dd>
+                        <dt>Други</dt>
+                        <dd>img, a</dd>
+                    </dl>
+                </section>
+
+                <section>
+                    <h2>Системни тагове</h2>
+                    <ul>
+						<li class="fragment fade-in">html - коренов елемент на HTML документа</li>
+						<li class="fragment fade-in">head - елемент, който съдържа нужна на браузъра информация за визуализиране на съдържанието</li>
+						<li class="fragment fade-in">body - елемент, съдържащ информацията, която се визуализира на екрана</li>
+                        <li class="fragment fade-in">title - заглавие на дадения прозорец/таб</li>
+                        <li class="fragment fade-in">script - съдържа някакъв скрипт, който се изпълнява върху страницата</li>
+                        <li class="fragment fade-in">style - съдържа стилове за страницата</li>
+                        <li class="fragment fade-in">meta - метаинформация като encoding, author, summary</li>
+                        <li class="fragment fade-in">link - връзка към друг файл (css, favicon)</li>
+					</ul>
+                </section>
+
+                <section>
+                    <h2>Основни тагове</h2>
+                    <ul>
+						<li class="fragment fade-in">div - контейнер с ширина за височина за групиране на елементи</li>
+						<li class="fragment fade-in">span - обгражда фраза/текст, с цел добавяне на стилове</li>
+						<li class="fragment fade-in">p - параграф</li>
+                        <li class="fragment fade-in">h1 - h6 - заглавия</li>
+                        <li class="fragment fade-in">
+                            img - изображение
+                            <ul>
+                                <li>атрибут src - задава адреса/пътя до изображението</li>
+                                <li>атрибут alt - текст, който се показва, ако изображението не е достъпно</li>
+                            </ul>
+                        </li>
+                        <li class="fragment fade-in">
+                            a - хиперлинк
+                            <ul>
+                                <li>атрибут href - накъде води линкът</li>
+                                <li>атрибут target - къде да се отвори</li>
+                            </ul>
+                        </li>
+					</ul>
+                </section>
+
+                <section>
+                    <h2>Блокови срещу inline елементи</h2>
+
+                    <section>
+                        <p>Блоковите елементи имат ширина и височина и винаги започват на нов ред</p>
+                        <p>Примери за блокови елементи са div, p, h1 - h6</p>
+                    </section>
+
+                    <section>
+                        <p>Inline елементите не започват на нов ред</p>
+                        <p>Примери за inline елементи са span, a, img</p>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>Списъци</h2>
+                    <ul>
+						<li class="fragment fade-in">ul - неподреден списък</li>
+						<li class="fragment fade-in">ol - номериран списък</li>
+						<li class="fragment fade-in">li - елемент от списък</li>
+                        <li class="fragment fade-in">dl - списък от термини и дефиниции</li>
+                        <li class="fragment fade-in">dt - термин</li>
+                        <li class="fragment fade-in">dd - дефиниция</li>
+					</ul>
+                </section>
+
+                <section>
+                    <h1>Пример</h1>
+                </section>
+
+                <section>
+                    <h2>Таблици</h2>
+                    <ul>
+						<li class="fragment fade-in">table - таблица</li>
+						<li class="fragment fade-in">thead - заглавна част на таблица</li>
+						<li class="fragment fade-in">tbody - основна част на таблица</li>
+                        <li class="fragment fade-in">tfoot - долна част на таблица</li>
+                        <li class="fragment fade-in">tr - ред на таблица</li>
+                        <li class="fragment fade-in">td - клетка на таблица</li>
+                        <li class="fragment fade-in">th - заглавна клетка на таблица</li>
+					</ul>
+                </section>
+
+                <section>
+                    <h1>Пример</h1>
+                </section>
+
+                <section>
+                    <h2>Коментари</h2>
+                    <p>HTML коментарите не се визуализират на екрана. Използват се предимно за документиране на HTML кода.</p>
+                    <pre class="html fragment fade-in">
+                        <code>
+                  <!-- Write your comments here -->
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h1>Въпроси?</h1>
+                </section>
+            </div>
+        </div>
+
+        <script src="../../dist/reveal.js"></script>
+		<script src="../../plugin/notes/notes.js"></script>
+		<script src="../../plugin/markdown/markdown.js"></script>
+		<script src="../../plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+    </body>
+</html>
