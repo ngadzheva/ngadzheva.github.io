@@ -53,11 +53,20 @@
 
 				<section>
 					<h3>Къде се съхраняват сесиите?</h3>
-					<ul>
-						<li class="fragment fade-in">в паметта на backend приложението</li>
-						<li class="fragment fade-in">в база данни</li>
-						<li class="fragment fade-in">в кеш паметта на backend приложението</li>
-					</ul>
+					<section>
+						<ul>
+							<li class="fragment fade-in">в бисквитки в браузъра на потребителя</li>
+							<li class="fragment fade-in">в localStorage</li>
+							<li class="fragment fade-in">в sessionStorage</li>
+						</ul>
+					</section>
+					<section>
+						<ul>
+							<li class="fragment fade-in">в паметта на backend приложението</li>
+							<li class="fragment fade-in">в база данни</li>
+							<li class="fragment fade-in">в кеш паметта на backend приложението</li>
+						</ul>
+					</section>
 				</section>
 
 				<section>
@@ -203,6 +212,15 @@ app.get('/', function (req, res) {
 							</code>
 						</pre>
 					</section>
+				</section>
+
+				<section>
+					<h3>Други начини за управление на сесии</h3>
+
+					<ul>
+						<li class="fragment fade-in">URL Rewriting</li>
+						<li class="fragment fade-in">JSON Web Tokens (JWT)</li>
+					</ul>
 				</section>
 
 				<section>
