@@ -12,6 +12,31 @@
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="../../plugin/highlight/monokai.css" id="highlight-theme">
+
+		<style>
+			.flow {
+				max-width: 700px;
+				margin: auto;
+				background: #fff;
+				padding: 20px;
+				border-radius: 10px;
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+			}
+			.step {
+				margin-bottom: 20px;
+			}
+			.arrow {
+				text-align: center;
+				font-size: 24px;
+				margin: 10px 0;
+			}
+			.token {
+				background: #eef;
+				padding: 10px;
+				border-left: 4px solid #88f;
+				margin-top: 10px;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="reveal">
@@ -45,6 +70,15 @@
 						</ul>
 					</section>
 					<section>
+						<h4>Как работят?</h4>
+						<ul>
+							<li class="fragment fade-in">Потребителят се логва.</li>
+							<li class="fragment fade-in">Сървърът създава сесия със съответната информация.</li>
+							<li class="fragment fade-in">Сървърът изпраща идентификатор за тази сесия.</li>
+							<li class="fragment fade-in">При всяка следваща заявка браузърът изпраща този идентификатор.</li>
+						</ul><li class="fragment fade-in">Сървърът го използва, за да достъпу съответната информация от хранилището за сесии.</li>
+					</section>
+					<section>
 						<figure>
 							<img src="images/List of Sessions 2.png"/>
 						</figure>
@@ -61,11 +95,50 @@
 						</ul>
 					</section>
 					<section>
-						<ul>
-							<li class="fragment fade-in">в паметта на backend приложението</li>
-							<li class="fragment fade-in">в база данни</li>
-							<li class="fragment fade-in">в кеш паметта на backend приложението</li>
-						</ul>
+						<table>
+							<tr>
+								<th>Хранилище</th>
+								<th>Бързина</th>
+								<th>Устойчивост</th>
+								<th>Мащабируемост</th>
+								<th>Подходящо за</th>
+							</tr>
+							<tr>
+								<td>Паметта на приложението</td>
+								<td>⭐⭐⭐⭐</td>
+								<td>❌</td>
+								<td>❌</td>
+								<td>Development</td>
+							</tr>
+							<tr>
+								<td>Файлова система</td>
+								<td>⭐⭐</td>
+								<td>✅</td>
+								<td>❌</td>
+								<td>Малки приложения</td>
+							</tr>
+							<tr>
+								<td>SQL DB</td>
+								<td>⭐⭐</td>
+								<td>✅✅</td>
+								<td>✅</td>
+								<td>Legacy/Analytics</td>
+							</tr>
+							<tr>
+								<td>MongoDB</td>
+								<td>⭐⭐⭐</td>
+								<td>✅✅</td>
+								<td>✅</td>
+								<td>ME(N) stack apps</td>
+							</tr>
+							<tr>
+								<td>Redis / Memcached</td>
+								<td>⭐⭐⭐⭐⭐</td>
+								<td>✅✅✅</td>
+								<td>✅✅✅</td>
+								<td>Production</td>
+							</tr>
+						</table>
 					</section>
 				</section>
 
@@ -217,10 +290,32 @@ app.get('/', function (req, res) {
 				<section>
 					<h3>Други начини за управление на сесии</h3>
 
-					<ul>
-						<li class="fragment fade-in">URL Rewriting</li>
-						<li class="fragment fade-in">JSON Web Tokens (JWT)</li>
-					</ul>
+					<section>
+						<ul>
+							<li class="fragment fade-in">URL Rewriting</li>
+							<li class="fragment fade-in">JSON Web Tokens (JWT)</li>
+						</ul>
+					</section>
+					<section>
+						<div class="flow">
+							<div class="step">🧑‍💻 <strong>User</strong> → <strong>Login</strong> → 🖥️ <strong>Server</strong></div>
+							<div class="arrow">⬇️</div>
+							<div class="step token">
+							  <strong>Issued:</strong><br>
+							  - accessToken (15m)<br>
+							  - refreshToken (7d)
+							</div>
+						
+							<div class="step">🧑‍💻 <strong>User</strong> → Request with <em>accessToken</em></div>
+							<div class="step">🖥️ <strong>Server</strong> → Check JWT → Check Blacklist → ✅ Proceed</div>
+						
+							<div class="step">🧑‍💻 <strong>User</strong> → <strong>Logout</strong></div>
+							<div class="step">🖥️ <strong>Server</strong> → Add tokens to <strong>Blacklist</strong></div>
+						
+							<div class="step">🧑‍💻 <strong>User</strong> → Request with <strong>blacklisted token</strong></div>
+							<div class="step">🖥️ <strong>Server</strong> → ❌ Reject</div>
+						</div>
+					</section>
 				</section>
 
 				<section>
