@@ -15,26 +15,25 @@
 
 		<style>
 			.flow {
-				max-width: 700px;
-				margin: auto;
+				width: 100%;
 				background: #fff;
-				padding: 20px;
+				padding: 5px;
 				border-radius: 10px;
 				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 			}
 			.step {
-				margin-bottom: 20px;
+				margin-bottom: 5px;
 			}
 			.arrow {
 				text-align: center;
-				font-size: 24px;
-				margin: 10px 0;
+				font-size: 22px;
+				margin: 5px 0;
 			}
 			.token {
 				background: #eef;
-				padding: 10px;
+				padding: 5px;
 				border-left: 4px solid #88f;
-				margin-top: 10px;
+				margin-top: 5px;
 			}
 		</style>
 	</head>
@@ -71,12 +70,15 @@
 					</section>
 					<section>
 						<h4>Как работят?</h4>
-						<ul>
-							<li class="fragment fade-in">Потребителят се логва.</li>
-							<li class="fragment fade-in">Сървърът създава сесия със съответната информация.</li>
-							<li class="fragment fade-in">Сървърът изпраща идентификатор за тази сесия.</li>
-							<li class="fragment fade-in">При всяка следваща заявка браузърът изпраща този идентификатор.</li>
-						</ul><li class="fragment fade-in">Сървърът го използва, за да достъпу съответната информация от хранилището за сесии.</li>
+						<div class="flow">
+							<div class="step">🧑‍💻 <strong>Потребител</strong> → <strong>Login</strong> → 🖥️ <strong>Сървър</strong></div>
+						
+							<div class="step">🖥️ <strong>Сървър</strong> → Създава <em>сесия</em></div>
+							<div class="step">🖥️ <strong>Сървър</strong> → Изпраща <strong>идентификатор</strong> на сесия → 🌐 <strong>Браузър</strong></div>
+						
+							<div class="step">🌐 <strong>Браузър</strong> → Изпраща <strong>идентификатор</strong> на сесия → 🖥️ <strong>Сървър</strong></div>
+							<div class="step">🖥️ <strong>Сървър</strong> → Използва <strong>идентификатор</strong> на сесия</div>
+						</div>
 					</section>
 					<section>
 						<figure>
@@ -94,53 +96,53 @@
 							<li class="fragment fade-in">в sessionStorage</li>
 						</ul>
 					</section>
+
 					<section>
-						<table>
-							<tr>
-								<th>Хранилище</th>
-								<th>Бързина</th>
-								<th>Устойчивост</th>
-								<th>Мащабируемост</th>
-								<th>Подходящо за</th>
-							</tr>
-							<tr>
-								<td>Паметта на приложението</td>
-								<td>⭐⭐⭐⭐</td>
-								<td>❌</td>
-								<td>❌</td>
-								<td>Development</td>
-							</tr>
-							<tr>
-								<td>Файлова система</td>
-								<td>⭐⭐</td>
-								<td>✅</td>
-								<td>❌</td>
-								<td>Малки приложения</td>
-							</tr>
-							<tr>
-								<td>SQL DB</td>
-								<td>⭐⭐</td>
-								<td>✅✅</td>
-								<td>✅</td>
-								<td>Legacy/Analytics</td>
-							</tr>
-							<tr>
-								<td>MongoDB</td>
-								<td>⭐⭐⭐</td>
-								<td>✅✅</td>
-								<td>✅</td>
-								<td>ME(N) stack apps</td>
-							</tr>
-							<tr>
-								<td>Redis / Memcached</td>
-								<td>⭐⭐⭐⭐⭐</td>
-								<td>✅✅✅</td>
-								<td>✅✅✅</td>
-								<td>Production</td>
-							</tr>
-						</table>
+						<figure>
+							<img src="images/sesstion-stores.png"/>
+						</figure>
 					</section>
 				</section>
+
+				<!-- <section style="left: -340px; width: 100%;">
+					<table>
+						<tr>
+							<th>Хранилище</th>
+							<th>Бързина</th>
+							<th>Устойчивост</th>
+							<th>Мащабируемост</th>
+							<th>Подходящо за</th>
+						</tr>
+						<tr>
+							<td>Паметта на приложението</td>
+							<td>⭐⭐⭐⭐</td>
+							<td>❌</td>
+							<td>❌</td>
+							<td>Development</td>
+						</tr>
+						<tr>
+							<td>SQL DB</td>
+							<td>⭐⭐</td>
+							<td>✅✅</td>
+							<td>✅</td>
+							<td>Legacy/Analytics</td>
+						</tr>
+						<tr>
+							<td>MongoDB</td>
+							<td>⭐⭐⭐</td>
+							<td>✅✅</td>
+							<td>✅</td>
+							<td>ME(N) stack apps</td>
+						</tr>
+						<tr>
+							<td>Redis / Memcached</td>
+							<td>⭐⭐⭐⭐⭐</td>
+							<td>✅✅✅</td>
+							<td>✅✅✅</td>
+							<td>Production</td>
+						</tr>
+					</table>
+				</section> -->
 
 				<section>
 					<h3>Съхраняване на сесия в кеша</h3>
@@ -296,33 +298,34 @@ app.get('/', function (req, res) {
 							<li class="fragment fade-in">JSON Web Tokens (JWT)</li>
 						</ul>
 					</section>
-					<section>
-						<div class="flow">
-							<div class="step">🧑‍💻 <strong>User</strong> → <strong>Login</strong> → 🖥️ <strong>Server</strong></div>
-							<div class="arrow">⬇️</div>
-							<div class="step token">
-							  <strong>Issued:</strong><br>
-							  - accessToken (15m)<br>
-							  - refreshToken (7d)
-							</div>
-						
-							<div class="step">🧑‍💻 <strong>User</strong> → Request with <em>accessToken</em></div>
-							<div class="step">🖥️ <strong>Server</strong> → Check JWT → Check Blacklist → ✅ Proceed</div>
-						
-							<div class="step">🧑‍💻 <strong>User</strong> → <strong>Logout</strong></div>
-							<div class="step">🖥️ <strong>Server</strong> → Add tokens to <strong>Blacklist</strong></div>
-						
-							<div class="step">🧑‍💻 <strong>User</strong> → Request with <strong>blacklisted token</strong></div>
-							<div class="step">🖥️ <strong>Server</strong> → ❌ Reject</div>
-						</div>
-					</section>
 				</section>
 
 				<section>
-					<h3>Оторизация и автентикация</h3>
+					<div class="flow">
+						<div class="step">🧑‍💻 <strong>User</strong> → <strong>Login</strong> → 🖥️ <strong>Server</strong></div>
+						<div class="arrow">⬇️</div>
+						<div class="step token">
+						  <strong>Issued:</strong><br>
+						  - accessToken (15m)<br>
+						  - refreshToken (7d)
+						</div>
+					
+						<div class="step">🧑‍💻 <strong>User</strong> → Request with <em>accessToken</em></div>
+						<div class="step">🖥️ <strong>Server</strong> → Check JWT → Check Blacklist → ✅ Proceed</div>
+					
+						<div class="step">🧑‍💻 <strong>User</strong> → <strong>Logout</strong></div>
+						<div class="step">🖥️ <strong>Server</strong> → Add tokens to <strong>Blacklist</strong></div>
+					
+						<div class="step">🧑‍💻 <strong>User</strong> → Request with <strong>blacklisted token</strong></div>
+						<div class="step">🖥️ <strong>Server</strong> → ❌ Reject</div>
+					</div>
+				</section>
 
-					<p class="fragment fade-in">Оторизация - процес на предоставяне на възможност на някого за достъп до даден ресурс.</p>
-					<p class="fragment fade-in">Автентикация - идентифициране на потребител.</p>
+				<section>
+					<h3>Упълномощаване и Удостоверяване</h3>
+
+					<p class="fragment fade-in">Упълномощаване (authorization) - процес на предоставяне на възможност на някого за достъп до даден ресурс.</p>
+					<p class="fragment fade-in">Удостоверяване (authentication) - идентифициране на потребител.</p>
 				</section>
 
 				<section>
