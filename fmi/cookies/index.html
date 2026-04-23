@@ -63,6 +63,12 @@
 				<section>
 					<h3>Сесия</h3>
 					<section>
+						<ul>
+							<li class="fragment fade-in">Поредица от непрекъснати действия на потребител на дадено уеб приложение в рамките на определен период от време.</li>
+							<li class="fragment fade-in">Данните се съхраняват под формата на наредени двойки ключ - стойност.</li>
+						</ul>
+					</section>
+					<!-- <section>
 						<div class="flow">
 							<div class="step">🧑‍💻 <strong>Потребител</strong> → <strong>Login</strong> → 🖥️ <strong>Сървър</strong></div>
 						
@@ -72,13 +78,7 @@
 							<div class="step">🌐 <strong>Браузър</strong> → Изпраща <strong>идентификатор</strong> на сесия → 🖥️ <strong>Сървър</strong></div>
 							<div class="step">🖥️ <strong>Сървър</strong> → Използва <strong>идентификатор</strong> на сесия</div>
 						</div>
-					</section>
-					<section>
-						<ul>
-							<li class="fragment fade-in">Поредица от непрекъснати действия на потребител на дадено уеб приложение в рамките на определен период от време.</li>
-							<li class="fragment fade-in">Данните се съхраняват под формата на наредени двойки ключ - стойност.</li>
-						</ul>
-					</section>
+					</section> -->
 					<section>
 						<figure>
 							<img src="images/List of Sessions 2.png"/>
@@ -246,7 +246,7 @@ if now() - session.createdAt > 30min:
 					<section>
 						<h4>Бисквитките на практика</h4>
 						<pre class="highlight js">
-							<code data-line-numbers="3|7|11|12-13">
+							<code data-line-numbers="2-3">
 document.cookie="name=value; path=/;"
 document.cookie
 							</code>
