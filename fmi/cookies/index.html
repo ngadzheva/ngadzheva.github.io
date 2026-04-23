@@ -85,22 +85,26 @@
 							<img src="images/List of Sessions 2.png"/>
 						</figure>
 					</section>
+					<section>
+						<figure>
+							<img src="images/session-flow.png"/>
+						</figure>
+					</section>
 				</section>
 
 				<section>
 					<h3>Къде се съхраняват сесиите?</h3>
+					<section>
+						<figure>
+							<img src="images/sesstion-stores.png"/>
+						</figure>
+					</section>
 					<section>
 						<ul>
 							<li class="fragment fade-in">в бисквитки в браузъра на потребителя</li>
 							<li class="fragment fade-in">в localStorage</li>
 							<li class="fragment fade-in">в sessionStorage</li>
 						</ul>
-					</section>
-
-					<section>
-						<figure>
-							<img src="images/sesstion-stores.png"/>
-						</figure>
 					</section>
 				</section>
 
@@ -145,107 +149,81 @@
 				</section> -->
 
 				<section>
-					<h3>Съхраняване на сесия в кеша</h3>
+					<h4>Каква е продължителността на сесиите?</h4>
+					<p class="fragment fade-in">Сесиите не живеят вечно.</p>
+					<ul>
+						<li class="fragment fade-in">потребителят затваря уеб сайта</li>
+						<li class="fragment fade-in">потребителят излиза от профила</li>
+						<li class="fragment fade-in">след определено време на неактивност</li>
+						<li class="fragment fade-in">след предварително дефинирано време</li>
+					</ul>
+				</section>
+
+				<section>
 					<section>
-						<figure>
-							<img src="images/1_DdKCmZ4CTdYzGKtk6YpWzQ.png"/>
-						</figure>
+						<h4>Как да създадем сесия?</h4>
+						<pre class="highlight js">
+							<code data-line-numbers="2|3|5|6|8-11|13">
+function login(request):
+    user = db.findUser(request.username)
+
+    if user.password == hash(request.password):
+        sessionId = generateRandomId()
+
+        sessionStore.save(sessionId, {
+            userId: user.id,
+            createdAt: now()
+        })
+
+        response.setCookie("SESSION_ID", sessionId)
+
+        return "Login success"
+    else:
+        return "Invalid credentials"						
+							</code>
+						</pre>
 					</section>
-					
+
 					<section>
-						<h4>Предимства</h4>
-						<ul>
-							<li class="fragment fade-in">бързо извличане на данни</li>
-							<li class="fragment fade-in">по-малко зависимости</li>
-							<li class="fragment fade-in">може да се използва за няколко приложения</li>
-							<li class="fragment fade-in">управлява се автоматично</li>
-						</ul>
+						<h4>Как да извличаме данни от сесия?</h4>
+						<pre class="highlight js">
+							<code data-line-numbers="2|3|5|7-8">
+function authMiddleware(request):
+    sessionId = request.cookies["SESSION_ID"]
+
+    session = sessionStore.get(sessionId)
+
+    if session == null:
+        return 401 Unauthorized
+
+    request.user = db.getUser(session.userId)
+    next()																						  
+							</code>
+						</pre>
 					</section>
+
 					<section>
-						<h4>Недостатъци</h4>
-						<ul>
-							<li class="fragment fade-in">допълнителен ресурс</li>
-							<li class="fragment fade-in">не е подходящо за малки приложения</li>
-							<li class="fragment fade-in">нулиране на кеша => унищожаване на всички сесии</li>
-						</ul>
+						<h4>Как да нулираме сесия?</h4>
+						<pre class="highlight js">
+							<code data-line-numbers="3">
+if now() - session.createdAt > 30min:
+    delete session
+																	  
+							</code>
+						</pre>
 					</section>
 				</section>
 
 				<section>
-					<h3>Сесии в контекста на Express</h3>
 
+				</section>
+				
+				<section>
+					<h3>Примери от реалния свят</h3>
 					<section>
 						<figure>
-							<img src="images/1_D4RORzEcl9Snzhr6JXeB4A.png"/>
+							<img src="images/real-examples.png"/>
 						</figure>
-					</section>
-
-					<section>
-						<h4>Как да създадем сесия с Express?</h4>
-						<pre class="highlight js">
-							<code data-line-numbers="4|5|6|9|10|12|13-15|16|17-20">
-import * as express from 'express';
-import * as uuid from 'uuid/v4';
-import * as session from 'express-session';
-import * as Memcached from 'memcached';
-import * as memcached from 'connect-memcached';
-
-const app = express();
-const memcachedServer = new Memcached(`${MEMCACHED_HOST}:${MEMCACHED_PORT}`);
-const MemcachedStore = memcached(session);
-
-app.use(session({
-	genid: (req) => {
-		return uuid.v4().toString();
-	},
-	secret: SESSION_SECRET_KEY,
-	store   : new MemcachedStore({
-		hosts: [`${MEMCACHED_HOST}:${MEMCACHED_PORT}`], 
-		secret: MEMCACHED_SECRET_KEY
-	})
-}));							
-							</code>
-						</pre>
-					</section>
-
-					<section>
-						<h4>Как да съхраняваме данни в сесия с Express?</h4>
-						<pre class="highlight js">
-							<code data-line-numbers="3,4">
-app.get('/', function(req, res, next) {
-	let sessData = req.session;
-	sessData.someAttribute = "foo";
-	res.send('Returning with some text');
-});															   
-							</code>
-						</pre>
-					</section>
-
-					<section>
-						<h4>Как да извличаме данни от сесия с Express?</h4>
-						<pre class="highlight js">
-							<code data-line-numbers="3">
-app.get('/bar', function(req, res, next) {
-	let someAttribute = req.session.someAttribute;
-	res.send(`This will print the attribute I set earlier: ${someAttribute}`);
-});																							  
-							</code>
-						</pre>
-					</section>
-
-					<section>
-						<h4>Как да нулираме сесия с Express?</h4>
-						<pre class="highlight js">
-							<code data-line-numbers="3">
-app.get('/logout', function(req, res, next) {
-	req.session.destroy((error) => {
-		if (error) {
-			console.error(error);
-		}
-	});
-});																							  
-							</code>
-						</pre>
 					</section>
 				</section>
 
@@ -267,36 +245,23 @@ app.get('/logout', function(req, res, next) {
 						</figure>
 					</section>
 					<section>
-						<h4>Cookies в Express?</h4>
+						<h4>Бисквитките на практика</h4>
 						<pre class="highlight js">
 							<code data-line-numbers="3|7|11|12-13">
-import * as express from 'express';
-import * as cookieParser from 'cookie-parser';
-	
-const app = express();
-
-app.use(cookieParser());
-
-app.get('/', function (req, res) {
-	const token = 'some token';
-	console.log('Cookies: ', req.cookies);
-	res.cookie('user', token, { maxAge: 60 * 60 * 24 * 30, httpOnly: true, secure: true });
-	res.setHeader('Set-Cookie', `user=${token};`);
-	res.send(token);
-});
+document.cookie="name=value; path=/;"
+document.cookie
 							</code>
 						</pre>
 					</section>
 				</section>
 
 				<section>
-					<h3>Други начини за управление на сесии</h3>
+					<h3>Stateful vs Stateless системи</h3>
 
 					<section>
-						<ul>
-							<li class="fragment fade-in">URL Rewriting</li>
-							<li class="fragment fade-in">JSON Web Tokens (JWT)</li>
-						</ul>
+						<figure>
+							<img src="images/stateful-vs-stateless.png"/>
+						</figure>
 					</section>
 				</section>
 
@@ -343,57 +308,6 @@ app.get('/', function (req, res) {
 						<li class="fragment fade-in">Функцията е необратима.</li>
 						<li class="fragment fade-in">Функцията е детерминистична.</li>
 					</ul>
-				</section>
-
-				<section>
-					<h3>Хеширане на пароли в Express?</h3>
-					<pre class="highlight js">
-						<code data-line-numbers="2|4|5-6">
-import * as bcrypt from 'bcrypt';
-
-bcrypt.hash(user.password, 10, async (error: Error, hash: string) => {
-	await User.create(
-		{ username: user.username, password: hash, email: user.email }, 
-		(error: Error, newUser: IUser) => {
-			if (error) {
-				console.error(error);
-			}
-		});
-});
-						</code>
-					</pre>
-				</section>
-
-				<section>
-					<h3>Автентикация с Express?</h3>
-					<pre class="highlight js">
-						<code data-line-numbers="3|14-16">
-import { Request, Response } from 'express';
-import * as bcrypt from 'bcrypt';
-import UserController from '../controllers/user-controller';
-
-let controller = new UserController();
-
-const auth = async (request: Request, response: Response, next: () => void) => {
-	const { username, password } = request.body;
-
-	const user = await controller.findUser(username);
-
-	if (user) {
-		bcrypt.compare(
-			password, 
-			user.password, 
-			(error: Error, result: boolean) => {
-				if (result) {
-					next();
-				} else {
-					response.status(401).send('Unauthorized');
-				}
-			});
-	}
-}
-						</code>
-					</pre>
 				</section>
 
 				<section><h3>Въпроси?</h3></section>
